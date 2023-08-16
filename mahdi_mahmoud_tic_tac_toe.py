@@ -1,7 +1,11 @@
+# Reference Used:
+# https://electropi.ai/lessons/python-programming-master/lessons-3-functions/capstone-tic-tac-toe
+# https://www.youtube.com/watch?v=dK6gJw4-NCo&t=1276s
+# https://www.youtube.com/watch?v=Q6CCdCBVypg&t=192s
+
 board = ["1", "2", "3",
               "4", "5", "6",
               "7", "8", "9"]
-
 player = "X"
 playing = True
 theWinner = None
@@ -26,15 +30,18 @@ def switch_player():
 
 
 def tic_tac_toe(board):
-    print(f"The next move belongs to player {player}...")
-    question = int(input("Please Enter a number between 1 to 9 => "))
-    if question >= 1 and question <= 9 and board[question-1] not in symbols:
-        board[question-1] = player
-        switch_player()
-    else:
-        print(f"Error, spot {question} is taken, please choose another spot")
+    try:
+        print(f"The next move belongs to player {player}...")
+        question = int(input("Please Enter a number between 1 to 9 => "))   
+        if question >= 1 and question <= 9 and board[question-1] not in symbols:
+            board[question-1] = player
+            switch_player()
+        else:
+            print(f"Error, spot {question} is taken, please choose another spot")
+    except ValueError:  
+        print("Error, the input is not a number, Please Enter a number between 1 to 9 => ")  
 
-
+     
 def check_win_tie(board):
 
     # Horizontal
@@ -108,9 +115,18 @@ def check_win_tie(board):
         playing = False
 
 
-while playing:
-    print_board(board)
-    tic_tac_toe(board)
-    check_win_tie(board)
+def master_function():
+    while playing:
+        print_board(board)
+        tic_tac_toe(board)
+        check_win_tie(board)
+    else:
+        print("Thank you for playing! ")
+
+master_function()
+
+question2 = input(r"Would you like to play again? (Y\N) Choose the letter 'Y' for another run ")
+if question2.upper() == "Y":
+    master_function()
 else:
-    print("Thank you for playing! ")
+  print("See you soon, Thank you for playing")
