@@ -124,9 +124,3 @@ def master_function():
         print("Thank you for playing! ")
 
 master_function()
-
-question2 = input(r"Would you like to play again? (Y\N) Choose the letter 'Y' for another run ")
-if question2.upper() == "Y":
-    master_function()
-else:
-  print("See you soon, Thank you for playing")
